@@ -8,8 +8,8 @@ import java.util.StringTokenizer;
  * 문제 유형 : next permutation, 구현
  * 
  * <풀이법 요약>
- * 1. 1번 선수가 4번 타자일 때 얻을 수 있는 타순을 next permutation으로 구한다
- * 2. 각 타순별 score을 계산한다
+ * 1. 1번 선수가 4번 타자일 때 얻을 수 있는 타순 배열을 next permutation으로 구한다
+ * 2. 각 타순 배열별 score을 계산한다
  * 3. max값을 찾아준다
  * 
  */
@@ -37,6 +37,7 @@ public class Main_G4_17281_야구 {
 		System.out.println(solve());
 	}
 
+	// 풀이
 	private static int solve() {
 		int answer = 0;
 
@@ -88,36 +89,34 @@ public class Main_G4_17281_야구 {
 	}
 
 	// next permutation
-	// i : 첫 꼭대기 / j : 오른쪽에서 첫번째로 큰 수 / k : 오른쪽부터 swap할 index
-	private static boolean np(int size) { // size : 맨 오른쪽 수
-		int i = size; // 가장 오른쪽부터 시작
+	private static boolean np(int size) {
+		int i = size;
 		while (i > 0 && p[i - 1] >= p[i]) {
-			i--; // 첫 꼭대기를 찾는다.
+			i--;
 		}
 
 		if (i == 0)
-			return false; // 이미 정렬되어 있음 5 4 3 2 1
+			return false;
 
-		int j = size; // 가장 오른쪽
+		int j = size;
 		while (p[i - 1] >= p[j]) {
-			j--; // 오른쪽에서 첫번째로 큰 수 찾기
+			j--;
 		}
 
-		// swap
-		int tmp = p[i - 1];
-		p[i - 1] = p[j];
-		p[j] = tmp;
+		swap(i - 1, j);
 
-		int k = size;
-		while (i < k) {
-			tmp = p[i];
-			p[i] = p[k];
-			p[k] = tmp;
-			i++;
-			k--;
+		j = size;
+		while (i < j) {
+			swap(i++, j--);
 		}
 
 		return true;
+	}
+
+	private static void swap(int i, int j) {
+		int tmp = p[i];
+		p[i] = p[j];
+		p[j] = tmp;
 	}
 
 }
