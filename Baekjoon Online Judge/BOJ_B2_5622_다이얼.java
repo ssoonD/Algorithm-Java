@@ -1,7 +1,7 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
-public class BOJ_B2_5622_´ÙÀÌ¾ó {
+public class BOJ_B2_5622_ë‹¤ì´ì–¼ {
 
 	public static void main(String[] args) throws Exception {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
